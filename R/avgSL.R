@@ -1,15 +1,16 @@
 
 #' Average Source Level
 #'
-#' This function calculates the average source level given a series of pressures
+#' This function calculates the average source level given a series of pressures measured at r distance from the source
 #'
-#' @param press Measured pressure values
-#' @param changingR Boolean for if the distance in which we are measuring the sound change
-#' @param ref The reference value
-#' @param r The distance of the source if constant
-#' @param PL The propogation loss measured from our instrument
-#' @param boolR Boolean of whether you want the value printed out in a string. Should be true for HW problems. 
-#' @return The average source level in dB rel to pressure references
+#' @param press Measured pressure values (prms, Pa)
+#' Source-receiver distance (m)
+#'    @param r if it is a constant
+#'    @param changingR Boolean for if the distance in which we are measuring the sound changes
+#' @param ref The pressure reference value e.g. 20*10^(-6) in the air, 10^(-6) underwater.
+#' @param PL The propogation loss measured for the frequency of the call at the location of the recording system
+#' @param boolR Boolean to print or the value result as a string. Should be true for HW problems. 
+#' @return The average source level in dB re. ref Pa.
 #' @export
 avgSL <- function(press, changingR = F, ref = 20*10^(-6), r = 50, PL = 20, 
                   boolR = T){
