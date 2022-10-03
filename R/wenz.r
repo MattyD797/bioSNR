@@ -1,13 +1,21 @@
-#' Soectrum Level Graph and Marine Noise Level
+#' Spectrum Level Graph and Marine Noise Level
 #'
-#' This function calculates the noise level (NL) in a specific marine environment.
+#' This function calculates the ambient noise level (NL; dB re. 1 µPa) in a deep-water marine environement.
 #'
-#' @param freqBand The band of frequencies for an animals call
-#' @param shipT The ship traffic in the area 
+#' Source: Wenz, G. M. (1962). Acoustic ambient noise in the ocean: Spectra and sources. The Journal of the Acoustical Society of America, 34(12), 1936-1956.
+#'         Urick, R. J. (1975). Principles of underwater sound v.2. 
+#'         Zimmer, W. M. (2011). Passive acoustic monitoring of cetaceans. Cambridge University Press.   
+#'
+#' @param freqBand The frequency band of interest
+#' @param shipT The intensity ship traffic in the area 
+#'        * 1 - 2 low ship traffic
+#'        * 3-4-5 standard ship traffic
+#'        * 6 - 7 heavy ship traffic
+#'        * 8 - 9 intense ship traffic       
 #' @param seaState The sea state as specified by the National Weather Service
 #' @param wSpeed The wind speed in miles per hour (mph)
 #' @param boolR Boolean of whether you want the value printed out in a string. Should be true for HW problems. 
-#' @return The noise level (NL) in dB rel 1 microP
+#' @return The noise level (NL) in dB re. 1 µPa
 #' @export
 specLvlGraph <- function(freqBand, 
                          shipT = -1, 
