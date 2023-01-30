@@ -15,3 +15,7 @@ Imports:
     ggplot2,
     pracma,
     scales
+Suggests: 
+    rmarkdown,
+    knitr
+VignetteBuilder: knitr

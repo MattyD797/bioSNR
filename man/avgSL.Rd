@@ -7,21 +7,20 @@
 avgSL(press, changingR = F, ref = 20 * 10^(-6), r = 50, PL = 20, boolR = T)
 }
 \arguments{
-\item{press}{Measured pressure values}
+\item{press}{Measured pressure values (prms, Pa)
+Source-receiver distance (m)
+@param r if it is a constant
+@param changingR Boolean for if the distance in which we are measuring the sound changes}
 
-\item{changingR}{Boolean for if the distance in which we are measuring the sound change}
+\item{ref}{The pressure reference value e.g. 20*10^(-6) in the air, 10^(-6) underwater.}
 
-\item{ref}{The reference value}
+\item{PL}{The propogation loss measured for the frequency of the call at the location of the recording system}
 
-\item{r}{The distance of the source if constant}
-
-\item{PL}{The propogation loss measured from our instrument}
-
-\item{boolR}{Boolean of whether you want the value printed out in a string. Should be true for HW problems.}
+\item{boolR}{Boolean to print or the value result as a string. Should be true for HW problems.}
 }
 \value{
-The average source level in dB rel to pressure references
+The average source level in dB re. ref Pa.
 }
 \description{
-This function calculates the average source level given a series of pressures
+This function calculates the average source level given a series of pressures measured at r distance from the source
 }

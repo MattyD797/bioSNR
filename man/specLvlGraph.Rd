@@ -2,14 +2,18 @@
 % Please edit documentation in R/wenz.r
 \name{specLvlGraph}
 \alias{specLvlGraph}
-\title{Soectrum Level Graph and Marine Noise Level}
+\title{Spectrum Level Graph and Marine Noise Level}
 \usage{
 specLvlGraph(freqBand, shipT = -1, seaState = -1, wSpeed = 0, boolR = T)
 }
 \arguments{
-\item{freqBand}{The band of frequencies for an animals call}
+\item{freqBand}{The frequency band of interest}
 
-\item{shipT}{The ship traffic in the area}
+\item{shipT}{The intensity ship traffic in the area
+* 1 - 2 low ship traffic
+* 3-4-5 standard ship traffic
+* 6 - 7 heavy ship traffic
+* 8 - 9 intense ship traffic}
 
 \item{seaState}{The sea state as specified by the National Weather Service}
 
@@ -18,8 +22,13 @@ specLvlGraph(freqBand, shipT = -1, seaState = -1, wSpeed = 0, boolR = T)
 \item{boolR}{Boolean of whether you want the value printed out in a string. Should be true for HW problems.}
 }
 \value{
-The noise level (NL) in dB rel 1 microP
+The noise level (NL) in dB re. 1 µPa
 }
 \description{
-This function calculates the noise level (NL) in a specific marine environment.
+This function calculates the ambient noise level (NL; dB re. 1 µPa) in a deep-water marine environement.
+}
+\details{
+Source: Wenz, G. M. (1962). Acoustic ambient noise in the ocean: Spectra and sources. The Journal of the Acoustical Society of America, 34(12), 1936-1956.
+Urick, R. J. (1975). Principles of underwater sound v.2.
+Zimmer, W. M. (2011). Passive acoustic monitoring of cetaceans. Cambridge University Press.
 }

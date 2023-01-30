@@ -1,0 +1,20 @@
+---
+title: "Intermediate: Passive Sonar Equation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Passive Sonar Equation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+author: Matthew Duggan
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(bioSNR)
+```
