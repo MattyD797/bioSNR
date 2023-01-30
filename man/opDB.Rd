@@ -20,7 +20,6 @@ A sinlge dB value
 This function either adds, subtracts or averages dB values specified in function. This is for dB values in re to power, intensity or pressure.
 }
 \examples{
-#How much are Malayan tapir calls (15 kHz) absorbed in a tropical region
-#(30 deg C) assuming a humidity of 80\% and standard pressure (101.325)?
-opDB(c(100, 101, 127, 96), )
+#Given a set of intensity values, add them.
+opDB(c(100, 101, 127, 96), 10)
 }

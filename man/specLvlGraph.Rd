@@ -22,13 +22,18 @@ specLvlGraph(freqBand, shipT = -1, seaState = -1, wSpeed = 0, boolR = T)
 \item{boolR}{Boolean of whether you want the value printed out in a string. Should be true for HW problems.}
 }
 \value{
-The noise level (NL) in dB re. 1 µPa
+The noise level (NL) in dB re. 1 microPa
 }
 \description{
-This function calculates the ambient noise level (NL; dB re. 1 µPa) in a deep-water marine environement.
+This function calculates the ambient noise level (NL; dB re. 1 microPa) in a deep-water marine environement.
 }
-\details{
-Source: Wenz, G. M. (1962). Acoustic ambient noise in the ocean: Spectra and sources. The Journal of the Acoustical Society of America, 34(12), 1936-1956.
+\references{
+Wenz, G. M. (1962). Acoustic ambient noise in the ocean: Spectra and sources. The Journal of the Acoustical Society of America, 34(12), 1936-1956.
+
 Urick, R. J. (1975). Principles of underwater sound v.2.
+
 Zimmer, W. M. (2011). Passive acoustic monitoring of cetaceans. Cambridge University Press.
+}
+\author{
+Matthew Duggan, K. Lisa Yang Center for Conservation Bioacoustics, Cornell University.
 }

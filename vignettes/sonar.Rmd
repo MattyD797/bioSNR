@@ -1,8 +1,8 @@
 ---
-title: "Intermediate: Passive Sonar Equation"
+title: "The Sound Stops with the Passive Sonar Equation"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Passive Sonar Equation}
+  %\VignetteIndexEntry{Intermediate: Passive Sonar Equation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 author: Matthew Duggan
@@ -15,6 +15,89 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+The bioSNR package is an open-source SONAR equation calculator. The calculator is capable of handling simple to intermediate level acoustic problems associated with bioacoustics and passive acoustic monitoring (PAM) systems. 
+
+This document gives quick examples of bioSNR's capabilities with the commonly utilized passive sonar equation. 
+
+```{r setup, eval=FALSE}
+#Stable - Install package from CRAN 
+install.packages("bioSNR")
+
+#Unstable - Install package from Github repository 
+devtools::install_github("MattyD797/bioSNR")
+
+#Attach package namespace to active libraries in Rstudio
 library(bioSNR)
 ```
+
+```{r setupR, eval=TRUE, include=FALSE}
+library(bioSNR)
+```
+
+### The Passive Sonar Equation
+
+The passive sonar equation is utilized to describe the relationship, or sound-to-noise ratio (SNR), of an **underwater** sound from a source to receiver. It is only applicable when reflection and scattering aren't impacting factors, however, it is good for more general characteristic approaches, such as in determining detection ranges of a recording unit and acoustic space. It terms of bioacoustics, the equation would be written out as follows:
+
+$$SL-TL-(NL-PG)\geq DT$$
+
+* $SL$ is the source level or dB of the animal call.
+* $TL$ is the transmission loss or propagation loss.
+* $NL$ is the noise level or background ambient noise. 
+* $PG$ is the processing gain or directivity index which reduces the noise level. 
+* $DT$ is the detection threshold or level of sound necessary to reach the reciever.
+
+### Source Level
+
+Before we start utilizing the formula, let's understand its parts. The $SL$ is typically measured 1 meter away from the source (~3 wavelengths). This also means that $SL$ is the ratio of the transmitted intensity from the source to a reference intensity. Refer to the vignette [decibels](decibels.Rmd) for a refresher on dBs or the introduction vignette for more information on intensity, power, and pressure. 
+
+If we take a simulated sound source, such as a clown fish called Nemo, we can better see the physics! Let's say for simplicity that Nemo emits a perfect omni-directional sound. We refer to this uniform prorogation of sound power as _spherical spreading_. By teh definition of $SL$, we can form this equation:
+ 
+$$SL=10log\frac{I_s}{I_{ref}}$$
+
+* $I_s$ is the intensity of the transmitted signal from 1 meter or at elast 3 wavelengths away. 
+* $I_{ref}$ is the intensity of a sound with a root mean square pressure of $1\;\mu Pa$. 
+* $SL$ is the source level in $dB \:re\: 1\;\mu Pa$, but is actually the intensity of a $1\;\mu Pa$ signal. 
+
+If we remember the equation for itensity, we can easily see the relationship between pressure and intensity ($I = \frac{P_{rms}^2}{z}$). Just in case, a similar relationship between intensity and power can also be expressed as $I = \frac{P}{4\pi r^2}$. The $SL$ can then be expressed in power or pressure as well:
+
+$$ SL=10log_{10}\frac{I_s}{I_{ref}} = 10log_{10}\frac{P}{4\pi I_{ref}} = 10log_{10}P-10log_{10}(4\pi I_{ref}) = 10log_{10}P+170.8$$
+
+$$ ...= 10log_{10}\frac{P_{rms}^2}{\rho c I_{ref}} = 10log_{10}P_{rms}^2-10log_{10}(\rho c * 6.7*10^{-19})$$
+
+* Where $I_{ref}$ is equal to $1 \mu Pa$ (If you recall from the decibels document: $1 \mu Pa = 6.7*10^{-19}\: \frac{W}{m^2}$)
+
+### Transmission Loss
+
+Nemo's sound will eventually soften as the sound wave moves through the water. This propagation loss is caused by resistance of water particles to move and the properties of the water itself. The exact definition is the ratio of sound intensity at 1 m from a source to the sound intensity at distance $r$. Thus, transmission loss can be represented as:
+
+$$TL = 10log\frac{I_s}{I_sR}$$
+
+$TL$ is the most complicated parameter in the passive sonar equation, but in a perfect world there are two parts to transmission loss 1) the geometric spreading and 2) absorption of the sound as it propagates. 1 is the main contributor.Geometric spreading of the sounds energy over a larger area lowers the intensity of the sound over an increasing distance. 2 is the absorption coefficient we discussed in the introduction and we are going to discuss what goes into calculating this measurement in more depth.
+
+Geometric spreading is either spherical or cylindrical. These shapes are used to map spreading because water has a certain depth and, thus, the sphere starts becoming more and more resembling of a cylinder Think of a watermelon and cutting the top and bottom).  The transition from spherical to cylindrical is not uniform, but to try to keep consistent, we will maintain a transition range of half the depth of the location of the sound source. Below is the geometric transmission loss for spherical and then for cyclindrical (before and after transition range):
+
+$$TL_{spherical}=20log_{10}r$$
+
+$$TL_{cylindrical}=10log_{10}r + 10log_{10}r_{trans}$$
+
+* $r$ is the propogation distance.
+* $r_{trans}$ is transition range or half the depth. 
+
+The absorption coefficient calculated using absorptionWater() is actually calculated by the viscous absorption, boric acid relaxation, and magnesium sulfate relaxation process. The equations for these are explained well in other literature and really beyond our need of understanding absorption in the context of bioacoustics, so I will not repeat them here. When we do add this parameter to the geometrical spreading our formula takes on the form:
+
+$$TL=TL_{spherical | cylindrical}(r)+\alpha r$$
+
+* $\alpha$ is the absorption coefficient calculated using the function absorptionWater(). 
+
+### Noise Level and Processing Gain
+
+Noise Level ($NL$) is simply the ratio of the average background noise intensity and reference intensity that is the same as used in the $SL$ (typically $I_{ref} = 6.7*10^{-19}\: \frac{W}{m^2}$). The equation is the same as $SL$, however, to get an estimate we can use what is called a Wenz curve. 
+
+```{r wenz, echo=FALSE}
+specLvlGraph(c(0,0))
+```
+
+
+Organisms can reduce the noise level by directing or perceiving sounds in a certain direction, thus reducing the amount of noise. $PG$ can be assumed to be NULL unless otherwise stated or known. 
+
+

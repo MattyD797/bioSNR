@@ -25,8 +25,11 @@ absorptionWater <- function(f, pH=8, t=0, s=35, z){
   f2 <- 42*exp(T/17)
 
   #absorption coefficient
+    #boric acid
   a <- 0.106*((f1*f^2)/(f^2+f1^2))*exp((pH-8)/0.56) +
+    #magnesium sulphate
     0.52*(1+(T/43))*(s/35)*((f2*f^2)/(f^2+f2^2))*exp((-z)/6)+
+    #viscousity absorption
     0.00049*f^2*exp(-((t/27)+(z/17)))
   return(a)
 }

@@ -3,8 +3,6 @@
 export(absorptionAir)
 export(absorptionWater)
 export(activeSpace)
-export(addDB)
-export(avgDB)
 export(avgSL)
 export(opDB)
 export(recievedL2)
