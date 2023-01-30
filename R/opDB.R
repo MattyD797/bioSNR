@@ -35,10 +35,8 @@ opDB <- function(dbs, PL, op="add"){
     } else if (length(dbs==1)){
       return(dB)
     } else {
-
       stop("Invalid input.")
     }
-
   } else {
     #error when operation is invalid
     stop("Choose a valid operation: op = ('add', 'avg', 'sub').")
