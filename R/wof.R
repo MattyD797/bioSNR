@@ -2,7 +2,7 @@
 #'
 #' This function finds the length of a sound wave, known as the wavelength (m), or
 #' frequency of a sound (Hz), given the identity of the input. The speed of sound is the default in
-#' air (340 m/s).
+#' air (340 m/s). The speed of sound, c, can be calculated via soundSpeed().
 #'
 #' @param b The known wavelength (m) or frequency (Hz).
 #' @param c The speed of sound in m/s. Sound travels ~340 m/s in air and ~1500 m/s in salt water.
