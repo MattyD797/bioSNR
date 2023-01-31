@@ -33,9 +33,9 @@ library(bioSNR)
 
 ## Authors
 
-[Matthew Duggan]()
-[Léa Bouffaut]()
-[Marissa Garcia]()
+- [Matthew Duggan]()
+- [Léa Bouffaut]()
+- [Marissa Garcia]()
 
 ## Acknowledgements
 
