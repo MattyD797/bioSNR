@@ -1,12 +1,8 @@
 <a href="https://img.shields.io/github/issues/MattyD797/bioSNR">
     <img alt="Issues" src="https://img.shields.io/github/issues/MattyD797/bioSNR" />
-  </a>
-  
- <a href=" https://img.shields.io/github/r-package/v/MattyD797/bioSNR">
-    <img alt="Issues" src=" https://img.shields.io/github/r-package/v/MattyD797/bioSNR" />
-  </a> 
-  
- <a href="https://img.shields.io/github/last-commit/MattyD797/bioSNR">
+  </a> <a href=" https://img.shields.io/github/r-package/v/MattyD797/bioSNR">
+    <img alt="Issues" src="https://img.shields.io/github/r-package/v/MattyD797/bioSNR" />
+  </a>  <a href="https://img.shields.io/github/last-commit/MattyD797/bioSNR">
     <img alt="Issues" src="https://img.shields.io/github/last-commit/MattyD797/bioSNR" />
   </a> 
 
