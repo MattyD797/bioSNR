@@ -12,9 +12,9 @@
 #' @export
 #'
 #' @examples
-#' #How much are Malayan tapir calls (15 kHz) absorbed in a tropical region
-#' #(30 deg C) assuming a humidity of 80% and standard pressure (101.325)?
-#' absorption(15000, 101.325, 30, 80)
+#' #How much are blue whale calls (30 kHz) absorbed in a tropical region
+#' #(30 deg C) assuming a salinity of 35 ppt, pH of 8, and a depth of 5 km?
+#' absorptionWater(30, 8, 35, 5)
 
 absorptionWater <- function(f, pH=8, t=0, s=35, z){
 

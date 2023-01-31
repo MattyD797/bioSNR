@@ -170,35 +170,35 @@ specLvlGraph <- function(freqBand,
              tnInput = as.numeric(tnInput))
 
     suppressWarnings(print(ggplot2::ggplot(dt, ggplot2::aes(freq)) +
-      ggplot2::geom_line(aes(y=shipTraffic.1))+
-      ggplot2::geom_line(aes(y=shipTraffic.2))+
-      ggplot2::geom_line(aes(y=shipTraffic.3))+
-      ggplot2::geom_line(aes(y=shipTraffic.4))+
-      ggplot2::geom_line(aes(y=shipTraffic.5))+
-      ggplot2::geom_line(aes(y=shipTraffic.6))+
-      ggplot2::geom_line(aes(y=shipTraffic.7))+
-      ggplot2::geom_line(aes(y=shipTraffic.8))+
-      ggplot2::geom_line(aes(y=shipTraffic.9))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.1))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.2))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.3))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.4))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.5))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.6))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.7))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.8))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.9))+
       ggplot2::scale_x_continuous(trans='log10', ,
                          breaks = scales::trans_breaks("log10", function(x) 10^x),
                          labels = scales::trans_format("log10", scales::math_format(10^.x)),
                          n.breaks = 25)+
-      ggplot2::geom_line(aes(y=NL_geophys))+
-      ggplot2::geom_line(aes(y=seaState.0))+
-      ggplot2::geom_line(aes(y=seaState.10))+
-      ggplot2::geom_line(aes(y=seaState.15))+
-      ggplot2::geom_line(aes(y=seaState.20))+
-      ggplot2::geom_line(aes(y=seaState.25))+
-      ggplot2::geom_line(aes(y=seaState.30))+
-      ggplot2::geom_line(aes(y=seaState.40))+
-      ggplot2::geom_line(aes(y=seaState.45))+
-      ggplot2::geom_line(aes(y=NL_thermal))+
+      ggplot2::geom_line(ggplot2::aes(y=NL_geophys))+
+      ggplot2::geom_line(ggplot2::aes(y=seaState.0))+
+      ggplot2::geom_line(ggplot2::aes(y=seaState.10))+
+      ggplot2::geom_line(ggplot2::aes(y=seaState.15))+
+      ggplot2::geom_line(ggplot2::aes(y=seaState.20))+
+      ggplot2::geom_line(ggplot2::aes(y=seaState.25))+
+      ggplot2::geom_line(ggplot2::aes(y=seaState.30))+
+      ggplot2::geom_line(ggplot2::aes(y=seaState.40))+
+      ggplot2::geom_line(ggplot2::aes(y=seaState.45))+
+      ggplot2::geom_line(ggplot2::aes(y=NL_thermal))+
       ggplot2::ylab(as.expression(bquote("Spectrum Level (dB ref 1 \u00B5" ~ P^2 ~ ')')))+
       ggplot2::xlab("Frequency (Hz)") +
-      ggplot2::geom_point(aes(y=gpInput), color = "red")+
-      ggplot2::geom_point(aes(y=stInput), color = "red")+
-      ggplot2::geom_point(aes(y=wInput), color = "red")+
-      ggplot2::geom_point(aes(y=tnInput), color = "red")+
+      ggplot2::geom_point(ggplot2::aes(y=gpInput), color = "red")+
+      ggplot2::geom_point(ggplot2::aes(y=stInput), color = "red")+
+      ggplot2::geom_point(ggplot2::aes(y=wInput), color = "red")+
+      ggplot2::geom_point(ggplot2::aes(y=tnInput), color = "red")+
       ggplot2::geom_vline(xintercept = freqBand[1], color = "blue")+
       ggplot2::geom_vline(xintercept = freqBand[2], color = "blue")+
       ggplot2::annotation_logticks(sides = "b")))
