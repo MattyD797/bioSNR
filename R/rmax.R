@@ -20,7 +20,7 @@ rmax <- function(a=0,sl,nl,dt,d,geom="cyl",xaxis=25, n=300){
   ans <- sl-nl-dt-(10*log10(d/2))
 
 
-  f1 <- function(x,ab=a){(ab*x + 10*log10(x*10))}
+  f1 <- function(x,ab=a){(ab*x/1000 + 10*log10(x))}
   f2 <- ans
 
   b <- optimize(function(t0) abs(f1(t0) - f2), interval = range(1:xaxis))

@@ -1,6 +1,6 @@
 ---
 title: "bioSNR: An Introduction to the Physics Behind Bioacoustics"
-output: rmarkdown::html_vignette
+output: rmarkdown::word_document
 vignette: >
   %\VignetteIndexEntry{bioSNR: An Introduction to the Physics Behind Bioacoustics}
   %\VignetteEngine{knitr::rmarkdown}

@@ -1,6 +1,6 @@
 ---
 title: "The Sound Stops with the Passive Sonar Equation"
-output: rmarkdown::html_vignette
+output: rmarkdown::word_document
 vignette: >
   %\VignetteIndexEntry{Intermediate: Passive Sonar Equation}
   %\VignetteEngine{knitr::rmarkdown}
@@ -270,7 +270,7 @@ boolR <- T
 
 $NL$ can then be found by the following formula: 
 
-$$ NL=SpectrumLvl + 10log_{10}(Bandwidth) $$
+$$ NL=\text{SpectrumLvl} + 10log_{10}(\text{Bandwidth}) $$
 
 * $Bandwidth$ is equal to the difference from max to min frequency of the measured frequency band. 
 
