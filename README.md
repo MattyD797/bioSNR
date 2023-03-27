@@ -33,9 +33,9 @@ library(bioSNR)
 
 ## Authors
 
-- [Matthew Duggan]()
+- [Matthew Duggan](https://github.com/MattyD797)
 - [Léa Bouffaut]()
-- [Marissa Garcia]()
+- [Marissa Garcia](https://github.com/mlynngarcia)
 
 ## Acknowledgements
 
