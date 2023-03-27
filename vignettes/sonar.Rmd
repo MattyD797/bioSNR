@@ -1,6 +1,6 @@
 ---
 title: "The Sound Stops with the Passive Sonar Equation"
-output: rmarkdown::word_document
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Intermediate: Passive Sonar Equation}
   %\VignetteEngine{knitr::rmarkdown}

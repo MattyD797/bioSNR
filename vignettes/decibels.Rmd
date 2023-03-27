@@ -1,7 +1,6 @@
 ---
 title: "Decibels: What's the Reference?"
-output: rmarkdown:::word_document
-always_allow_html: true
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Decibels: What's the Reference?}
   %\VignetteEngine{knitr::rmarkdown}
