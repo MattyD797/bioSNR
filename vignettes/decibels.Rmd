@@ -37,7 +37,7 @@ library(bioSNR)
 
 ### Decibel
 
-The logarithmic ratio of sound's power, intensity, or pressure between the sound source and the reference value. Which metric depends on the dB's reference of course, but the relationship is the same and adapted from the unit Bell or $Bel=\log_{10}(\frac{Power_2}{Power_1})$. Below are the specific equations for the three common metrics of sound (power, intensity, or pressure, respectively):
+The decibel (dB) is the logarithmic ratio between a common metric of sound (e.g., power, intensity, pressure) and its corresponding reference level. No matter the reference chosen, the formula used to calculate dBs remains the same and is adapted from the unit Bell or $Bel=\log_{10}(\frac{Power_2}{Power_1})$. Below are the specific equations for the three common metrics of sound (power, intensity, or pressure, respectively):
 
 $$ dB\:re\:W_{ref}=10\log_{10}(\frac{W}{W_{ref}})  $$
 $$ dB\:re\:I_{ref}=10\log_{10}(\frac{I}{I_{ref}})  $$
@@ -47,7 +47,7 @@ $$ dB\:re\:P_{ref}=10\log_{10}(\frac{P^2}{P_{ref}^2})\;\; |\;\;dB\:re\:P_{ref}=2
 * $I$ is intensity in $\frac{W}{m^2}$. 
 * $P$ is the pressure in $\mu Pa$
 
-The common reference levels that are always IMPORTANT to show are in the table below:
+When reporting back dB values, it is important to always label the value with the correct reference level, which is primarily decided upon by the ecosystem the sound value is calculated in (e.g., air, water). The common reference levels that are always IMPORTANT to show are in the table below:
 
 ```{r referenceTable, echo=FALSE}
 ref <- data.frame(row.names = c("Air", "Water"))
@@ -58,7 +58,7 @@ colnames(ref) <- c("Pressure", "Intensity", "Power")
 t <- knitr::kable(ref,align=c(rep('c',times=3)), format = "html") 
 kableExtra::kable_classic(t, full_width = FALSE) 
 ```
-Since we are dealing in ratios, these are important relationships to keep in mind (notice how we need to increase dB by 10 to double the percieved 'loudness'):
+If you need to compute a bioacoustics calculation in a pinch,, these are important relationships to keep in mind that may be helpful for a back-of-the-envelope dB calculation (notice how we need to increase dB by 10 to double the perceived 'loudness'):
 ```{r referenceTable2, echo=FALSE}
 ref <- data.frame(row.names = c("1", "2", "3", "4", "5"))
 ref[,1] <- c("dBs", "$+3$", "$+6$", "$+10$", "$+20$" )
@@ -70,7 +70,11 @@ t <- knitr::kable(ref,align=c(rep('c',times=5)), format = "html", col.names = NU
 kableExtra::kable_classic(t, full_width = FALSE) 
 ```
 
-Simple operations with dBs have to be done in three steps of calculating linear values, add/subtract, and convert back to dB level. We can write out this operation as below:
+Say you are interested in playing an excerpt from your favorite radio hit both underwater and in air (of course, we don’t recommend this without the right permits!) If you wanted the song to be heard underwater at the same dB level you played it in air, you would need to increase the dB level by 61.5 dBs. This is due to different reference levels and impedances between the two ecosystems. Differences in reference levels account for 26 dB, and differences in impedances account for 35.5 dB, in total amounting to 61.5 dBs.
+
+$waterdB - 61.5 = airdB$
+
+Simple operations with dBs are performed in three steps: calculating linear values, add/subtract these linear values, and convert back to dB-s (a logarithmic value). We can write out this operation as below:
 
 1. $raw\;values = 10^{measurement/X}*ref\;level$
 2. $Add/Subtract$
@@ -78,19 +82,19 @@ Simple operations with dBs have to be done in three steps of calculating linear 
 
 * $X$ is 20 (pressure) or 10 (intensity, power)
 
-Since comparing dBs can be more complicated than simple operations, the bioSNR makes adding, subtracting, and averaging relatively simple with a single function. 
+Since comparing dBs can be more complicated than performing simple operations, the bioSNR package makes adding, subtracting, and averaging relatively simple and streamlined with just a single function. 
 
 #### Examples
 
-1. Given some source level measurements you want to average them to get an idea on how many recorders you will need to record. Here are your measurements dB re $1\:\mu Pa$: 34, 57, 48, 66, 80, 55.
+1. Given some source level measurements of the Galápagos penguin (_Spheniscus mendiculus_), you want to average them to get an idea on how many recorders you will need to record. Here are your measurements dB re $1\:\mu Pa$: 34, 57, 48, 66, 80, 55.
 
 ```{r opDB1}
 opDB(c(34, 57, 48, 66, 80, 55), 20, op="avg")
 ```
 
-* 67.087 dB re $1\:\mu Pa$
+* 67.087 dB re $1\:\mu Pa$ is the average source level. This means you will need to take this number into consideration when considering your noise level out in the field for how far your recorders can be from an individual making a call.
 
-2. Given some source level measurements you want to add them because you have a lab assignment asking and just heard about bioSNR. Here are your measurements dB re $1*10^{-12} \frac{W}{m^2}$: 18, 27, 12, 22, 5, 50.
+2. A lab assignment for your bioacoustics course asks you to add up given source level measurements. You have just heard about the bioSNR package and are up for hee task. Here are your measurements dB re $1*10^{-12} \frac{W}{m^2}$: 18, 27, 12, 22, 5, 50. Compute the total dB value value of the measurements using your go-to bioSNR function for the task!
 
 ```{r opDB2}
 opDB(c(18, 27, 12, 22, 5, 50), 10, op="add")
