@@ -35,7 +35,7 @@ library(bioSNR)
 ```
 
 
-### Decibel
+### decibel
 
 The decibel (dB) is the logarithmic ratio between a common metric of sound (e.g., power, intensity, pressure) and its corresponding reference level. No matter the reference chosen, the formula used to calculate dBs remains the same and is adapted from the unit Bell or $Bel=\log_{10}(\frac{Power_2}{Power_1})$. Below are the specific equations for the three common metrics of sound (power, intensity, or pressure, respectively):
 
