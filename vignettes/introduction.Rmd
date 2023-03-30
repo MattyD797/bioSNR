@@ -17,9 +17,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-The bioSNR package is an open-source SONAR equation calculator. The calculator is capable of handling simple to intermediate level acoustic problems associated with bioacoustics and passive acoustic monitoring (PAM) systems. 
+The bioSNR package is an open-source solver of the passive SOund NAvigation and Ranging (SONAR) equation. The calculator is capable of handling simple-level acoustic problems associated with bioacoustics and passive acoustic monitoring (PAM) systems.
 
-This document gives quick examples of bioSNR's more basic capabilities and functions while introducing basic physics behind sound. 
+This document gives quick examples of bioSNR's more basic capabilities and functions while introducing some of the basic physics behind sound.
 
 ```{r setup, eval=FALSE}
 #Stable - Install package from CRAN 
@@ -36,18 +36,27 @@ library(bioSNR)
 library(bioSNR)
 ```
 
-### Sound Wave: Frequency and Wavelength 
+### Sound wave: frequency and wavelength
 
-A sound wave is a longitudinal wave of particles that oscillate parallel to the wave front. This movement of particles results in a repeating pattern of *compression* and *refraction* from ambient pressure, resulting in a travelling pressure wave [@key3]. Along with the majority of organisms, our hearing is based on these pressure changes, but some species (mainly fish and squid) rely on the motion of the particles. Therefore, we typically only measure soundscapes through pressure changes.
+A acoustic wave is a mechanical wave with longitudinal propagation. It means that under the influence of a wave (e.g., issued from a sound source)
+the particles of a medium (e.g. air, water) oscillate parallel to the direction of propagation of the wave, propagating the perturbation.
+This movement of particles results in repeated patterns of *compression* and *dilatation* around the value of ambient pressure, resulting in a travelling pressure wave [@key3].
+Along with the majority of organisms, our hearing is based on these pressure changes, but some species (mainly fish and squid) rely on the motion of the particles.
+Therefore, we typically only measure sounds through small pressure changes, in Pascals (Pa).
 
-Frequency (pitch) is the number of sound waves or oscillations produced in one second represented by the unit Hertz (Hz). In reference to our hearing range, sound with a frequency below 20 Hz is *infrasound* and sound above 20000 Hz is *ultrasound*. 
+For simplicity we often describe acoustics variables in relation with the illustration of sinusoid, the simplest waveform,
+where this oscillation exist both in space (for simplicity along one dimension) and in time.
+The period is the time interval between the successive occurrence of the same state in this oscillation. The frequency,
+(or pitch) is the number oscillations produced in one second represented by the unit Hertz (Hz).
+In reference to human hearing range, sound with a frequency below 20 Hz is *infrasound* and sound above 20kHz is *ultrasound*.
+The wavelength is the distance between successive crests if a wave and is measured in meters (m).
 
-The relationship between the length of a wavelength and the frequency can be represented as: 
+The relationship between the length of a wavelength and the frequency can be represented as
 
-$$\lambda = \frac{c}{f}$$
-
-* $\lambda$ is the wavelength (m)
-* $c$ is speed of sound in $\frac{m}{s}$ 
+$$\lambda = \frac{c}{f}$$,
+where,
+* $\lambda$ is the wavelength (m),
+* $c$ is speed of sound in (m/s)  and,
 * $f$ frequency in Hz (cycles per second). 
 
 By using this equation, the wof() function allows you to calculate either $\lambda$ or the $f$. — whichever your value of interest is. The first entry defaults to either $\lambda$ or $f$ — whichever value you already have. In the second position, you must set the c argument equal to the constant of sound speed in water or air.
