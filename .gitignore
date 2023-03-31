@@ -4,3 +4,4 @@
 .Ruserdata
 inst/doc
 *.pdf
+.DS_Store
