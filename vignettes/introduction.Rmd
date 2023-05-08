@@ -177,7 +177,11 @@ $$ z = c * \rho $$
 * $c$ is the speed of sound in $\frac{m}{s}$
 * $\rho$ is the density of the medium in $\frac{kg}{m^3}$
 
-Sound pressure is the average local pressure deviation from the surrounding pressure of the medium. In the case of bioacoustics, sound pressure is how the pressure of the vocalization of interest alters the average sound pressure of the surrounding ecosystem. We can measure the sound pressure (pressure root mean square) from either simulated sine wave representations of sound waves $Prms = P_{zero2peak}/\sqrt{2}$ or, more typically, by averaging the absolute pressure measurements $Prms = \sqrt{(P^2)_{average}}$. Below is a simulated sine wave representation to give you an understanding of $P_{zero2peak}$(blue) and $P_{peak2peak}$(red)[@key5]:
+Sound pressure is the  local pressure deviation from the ambient pressure in the medium.
+We can measure the root mean square (rms) sound pressure of pure tone signals from the amplitude of the peak in their
+sinusoidal representation $Prms = P_{zero2peak}/\sqrt{2}$ or, more for none-pure tones (most common) by averaging the
+absolute pressure measurements $Prms = \sqrt{(P^2)_{average}}$.
+Below is a simulated sine wave representation to give you an understanding of $P_{zero2peak}$(blue) and $P_{peak2peak}$(red)[@key5]:
 
 ```{r sine graph, echo=FALSE, fig.align = 'center'}
 #simulated sine sound wave
@@ -208,7 +212,12 @@ ggplot2::ggplot(s, ggplot2::aes(t,y))+
   
 ```
 
-Finally, the sound intensity can be measured by the relationship between pressure and the impedance. Therefore, the definition of intensity of sound is the average amount of energy transmitted per unit time through a unit area in a specified direction. The acoustic impedance of water is 3,500 times higher than in air, meaning a specific sound produced in air would be 3,500 times less intense if instead produced in water. Further, if two different sounds in water and air were estimated to have the same intensity, the sound prouced in air would have much smaller pressure, since speed of sound is held relatively constant for each environment [@key6;@key7]. The relationship between impedance and pressure can be represented as the following:
+Finally, for a plane wave, the sound intensity can be measured by the relationship between acoustic pressure and the impedance.
+Therefore, the definition of intensity of sound is the average amount of energy per area in a specified direction.
+The acoustic impedance of water is 3,500 times higher than in air, meaning a specific sound produced in air would be 3,500
+times less intense if instead produced in water. Further, if two different sounds
+in water and air were estimated to have the same intensity, the sound produced in air would have much smaller pressure [@key6;@key7].
+The intensity can be represented as the following:
 
 $$ Sound \;intensity = sound \;pressure * particle \;velocity$$
 $$ I = \frac{P_{rms}^2}{z}$$
