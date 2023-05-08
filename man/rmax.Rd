@@ -2,12 +2,27 @@
 % Please edit documentation in R/rmax.R
 \name{rmax}
 \alias{rmax}
-\title{This function solves the sonar equation for the maximum range, for cylindrical spreading and no absorption
-e.g seek the range at wich the TL =  SL - NL - DT;}
+\title{wavelength and frequency}
 \usage{
-rmax(TL, boolR = T)
+rmax(a = 0, sl, nl, dt, d, geom = "cyl", xaxis = 25, n = 300)
+}
+\arguments{
+\item{b}{The known wavelength (m) or frequency (Hz).}
+
+\item{c}{The speed of sound in m/s. As a general rule of thumb, however, c is equal to 1500 m/s in saltwater and 350 m/s in air. Note that the distinction between freshwater and saltwater is important. Sound speed is faster in saltwater than freshwater.}
+}
+\value{
+The unknown wavelength (m) or frequency (Hz) given the identity of input a.
 }
 \description{
-This function solves the sonar equation for the maximum range, for cylindrical spreading and no absorption
-e.g seek the range at wich the TL =  SL - NL - DT;
+This function finds the length of a sound wave, known as the wavelength (m), or
+frequency of a sound (Hz), given the identity of the input. The speed of sound is the default in
+air (340 m/s). You may calculate your own value for c relative to the conditions present
+in your ecosystem of study via soundSpeed().
+}
+\examples{
+# Given a frequency of 80 Hz in air, what is the wavelength?
+wof(80000)
+# Given a wavelength of 0.004 m in salt water, what is the frequency?
+wof(0.004, c=1500)
 }

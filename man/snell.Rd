@@ -20,6 +20,3 @@ The opposing angle of reflection or refraction, respectfully
 This function is a reformated version of Snell's law that finds reflection or refraction angle given the two mediums longitudinal
 wave velocities.
 }
-\examples{
-
-}
