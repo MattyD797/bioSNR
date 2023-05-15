@@ -20,3 +20,9 @@ The opposing angle of reflection or refraction, respectfully
 This function is a reformated version of Snell's law that finds reflection or refraction angle given the two mediums longitudinal
 wave velocities.
 }
+\examples{
+# Calculate the reflection angle given the angle of a black-tailed godwit sound
+#source is 64 degrees, the speed is 1564 m/s in the first medium and 1494 m/s
+#in the second medium.
+snell(64,1564,1494)
+}

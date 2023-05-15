@@ -6,6 +6,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 author: Matthew Duggan
+bibliography: ref_intro.bib 
 ---
 
 ```{r, include = FALSE}
@@ -310,8 +311,8 @@ DT <- 10
 #Transition Range <- depth/2
 TR <- 2500
 
-rmax(sl=189,nl=77,dt=10,d=10000, xaxis=1000000)
+rmax(sl=SL,nl=NL,dt=DT,d=5000, xaxis=10000000)
 ```
-The call has a detection range of 316978.6 meters. Nemo has some chords!
+The call has a detection range of 6354626 meters. Nemo has some chords!
 
 

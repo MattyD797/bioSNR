@@ -87,19 +87,19 @@ wof(0.012, c=350)
 
 While a sound wave travels similarly no matter its medium, different media still have different physical properties that alter the wave's speed. The speed of a wave is influenced dynamic ecosystem conditions. In air, the parameters that influence sound speed are temperature, humidity, and wind speed. In water, the parameters are temperature, depth, and salinity. Nonetheless, on average, sound travels ~340 $\frac{m}{s}$ in air and ~1500 $\frac{m}{s}$ in salt water.
 
-The formula to find sound speed in the _ocean_:
+The formula to find sound speed in the _ocean_ [@key9] is
 
 $$ c = 1449.2 + 4.6t – 0.055t^2 + 0.00029t^3 + (1.34-0.010t) * (s-35) + 0.0165z $$
-
+where,
 * $c$ is sound speed in $\frac{m}{s}$
 * $t$ is temperature in °C
 * $s$ is salinity in parts per thousand (ppt)
 * $z$ is depth in m
 
-The formula to find sound speed in _air_:
+The formula to find sound speed in _air_ is
 
 $$ c = 331 + 0.6t $$
-
+where,
 * $c$ is sound speed in $\frac{m}{s}$
 * $t$ is temperature in °C
 
@@ -126,15 +126,15 @@ soundSpeed(30, "water", 35, 10)
 ```
 * In water, the call will travel at the speed of 1545.695 $\frac{m}{s}$. 
 
-### Sound Reflection and Refraction
+### Sound Reflection, Transmission, and Refraction
 
 As a sound wave travels through a medium, it will be dynamically reflected and refracted. Reflection is like a ball bouncing off the ground in which the energy of a sound is directed into another direction by an object. Sound enters water from air at the critical angle of 15° at the air-water boundary -- or the place where the surface of water meets air. Refraction is when sound changes speed after crossing into a different medium, such as when a sound from air enters the water. Refraction can also occur when sound changes speed in a medium with varying conditions, such as when temperature shifts through the water column in the ocean.
 The angle and longitudinal wave velocity of this new direction from reflection can be calculated utilizing Snell's law, where reflection angle is represented as $\Theta_1$ and refraction angle is represented as $\Theta_2$: 
 
 $$ \frac{\sin\Theta_1}{{V_L}_1} = \frac{\sin\Theta_2}{{V_L}_2} $$
-
-* ${V_L}_1$ is the longitudinal wave velocity in material 1 given in $\frac{m}{s}$
-* ${V_L}_2$ is the longitudinal wave velocity in material 2 given in $\frac{m}{s}$
+where,
+* $c_1$ and $c_2$ are the sounds speeds in medium 1 and 2 given in $\frac{m}{s}$
+* $theta_1$ and $theta_2$ are the angles of incidence and refraction in °
 
 #### Examples
 
@@ -168,11 +168,11 @@ Impedance is the measure of resistance of a medium to wave propagation, or in ot
 The unit of specific acoustic impedance is the Rayl (Ry), which is equal to 1 $kg/(m^2s)$ or 1 $Ns/m^3$. For air, z= 428 Ry at
 20°C and z = 413 Ry at 0°C. For water, z = 14.8 MRy. We can map the relationship of impedance to the speed of the sound and density of the medium: 
 
-$$ z = c * p $$
+$$ z = c * \rho $$
 
 * $z$ is the impedance in rayl or $\frac{kg}{m^2}$
 * $c$ is the speed of sound in $\frac{m}{s}$
-* $p$ is the density of the medium in $\frac{kg}{m^3}$
+* $\rho$ is the density of the medium in $\frac{kg}{m^3}$
 
 Sound pressure is the average local pressure deviation from the surrounding pressure of the medium. In the case of bioacoustics, sound pressure is how the pressure of the vocalization of interest alters the average sound pressure of the surrounding ecosystem. We can measure the sound pressure (pressure root mean square) from either simulated sine wave representations of sound waves $Prms = P_{zero2peak}/\sqrt{2}$ or, more typically, by averaging the absolute pressure measurements $Prms = \sqrt{(P^2)_{average}}$. Below is a simulated sine wave representation to give you an understanding of $P_{zero2peak}$(blue) and $P_{peak2peak}$(red)[@key5]:
 

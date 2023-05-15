@@ -1,21 +1,20 @@
-#' wavelength and frequency
+#' Maximum Detection Range
 #'
-#' This function finds the length of a sound wave, known as the wavelength (m), or
-#' frequency of a sound (Hz), given the identity of the input. The speed of sound is the default in
-#' air (340 m/s). You may calculate your own value for c relative to the conditions present
-#' in your ecosystem of study via soundSpeed().
+#' This function finds the maximum detection range of a given call.
 #'
-#' @param b The known wavelength (m) or frequency (Hz).
-#' @param c The speed of sound in m/s. As a general rule of thumb, however, c is equal to 1500 m/s in saltwater and 350 m/s in air. Note that the distinction between freshwater and saltwater is important. Sound speed is faster in saltwater than freshwater.
-#' @return The unknown wavelength (m) or frequency (Hz) given the identity of input a.
+#' @param a The absorption coefficeant given to you by the absorptionAir or absorptionWater formula.
+#' @param sl Source level of the signal of interest, as measured in dBs.
+#' @param nl Noise Level or background ambient noise in the recorder’s local environment.
+#' @param dt Detection Threshold or the additional dBs the signal of interest must achieve above ambient noise conditions in order to be detected by the receiver.
+#' @param d Depth
+#' @param xaxis Exaggerated max distance. This gives the largest distance to evaluate in order to find the intercept of your detection threshold and propogation of the source level.
+#' @return The maximum detection range in meters
 #' @export
 #'
 #' @examples
-#' # Given a frequency of 80 Hz in air, what is the wavelength?
-#' wof(80000)
-#' # Given a wavelength of 0.004 m in salt water, what is the frequency?
-#' wof(0.004, c=1500)
-rmax <- function(a=0,sl,nl,dt,d,geom="cyl",xaxis=25, n=300){
+#' # SL= 195, NL = 82.9897, DT = 10, TR = 2500
+#'  rmax(sl=195,nl=82.9897,dt=10,d=2500*2, xaxis=10000000)
+rmax <- function(sl,nl,dt,d,a=0, xaxis=25){
 
   ans <- sl-nl-dt-(10*log10(d/2))
 
@@ -23,7 +22,11 @@ rmax <- function(a=0,sl,nl,dt,d,geom="cyl",xaxis=25, n=300){
   f1 <- function(x,ab=a){(ab*x/1000 + 10*log10(x))}
   f2 <- ans
 
-  b <- optimize(function(t0) abs(f1(t0) - f2), interval = range(1:xaxis))
+  b <- stats::optimize(function(t0) abs(f1(t0) - f2), interval = range(1:xaxis))
+
+  if(xaxis == b[[1]]){
+    stop("Make he parameter'xaxis' larger.")
+  }
 
   return(b[[1]])
 }

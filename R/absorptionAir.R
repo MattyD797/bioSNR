@@ -15,7 +15,7 @@
 #' @examples
 #' #How much are Malayan tapir calls (15 kHz) absorbed in a tropical region
 #' #(30 deg C) assuming a humidity of 80% and standard pressure (101.325)?
-#' absorption(15000, 101.325, 30, 80)
+#' absorptionAir(15000, 101.325, 30, 80)
 
 absorptionAir <- function(f, p, t, h, pr=101.325, tr=293.15, to=273.16){
   #convert C to K

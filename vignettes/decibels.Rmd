@@ -56,7 +56,7 @@ ref[,2] <- c("$1*10^{-12}\\: W/m^2$", "$6.7*10^{-19}\\: W/m^2$")
 ref[,3] <- c("$1*10^{-12}\\: W$", "$6.7*10^{-19}\\: W$")
 colnames(ref) <- c("Pressure", "Intensity", "Power")
 t <- knitr::kable(ref,align=c(rep('c',times=3)), format = "html") 
-kableExtra::kable_classic(t, full_width = FALSE) 
+t
 ```
 If you need to compute a bioacoustics calculation in a pinch,, these are important relationships to keep in mind that may be helpful for a back-of-the-envelope dB calculation (notice how we need to increase dB by 10 to double the perceived 'loudness'):
 ```{r referenceTable2, echo=FALSE}
@@ -67,7 +67,7 @@ ref[,3] <- c("Intensity", "$2*$", "$4*$", "$10*$", "$100*$" )
 ref[,4] <- c("Power", "$2*$", "$4*$", "$10*$", "$100*$" )
 ref[,5] <- c("'Loudness'", "$1.23*$", "$1.52*$", "$2*$", "$4*$" )
 t <- knitr::kable(ref,align=c(rep('c',times=5)), format = "html", col.names = NULL) 
-kableExtra::kable_classic(t, full_width = FALSE) 
+t
 ```
 
 Say you are interested in playing an excerpt from your favorite radio hit both underwater and in air (of course, we don’t recommend this without the right permits!) If you wanted the song to be heard underwater at the same dB level you played it in air, you would need to increase the dB level by 61.5 dBs. This is due to different reference levels and impedances between the two ecosystems. Differences in reference levels account for 26 dB, and differences in impedances account for 35.5 dB, in total amounting to 61.5 dBs.

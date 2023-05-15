@@ -8,3 +8,5 @@ inst/doc
 /vignettes/*.aux
 /vignettes/*.html
 /vignettes/*.R
+*.pdf
+.DS_Store
