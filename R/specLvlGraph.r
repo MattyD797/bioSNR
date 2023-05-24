@@ -19,6 +19,9 @@
 #' @param boolR Boolean of whether you want the value printed out in a string. Should be true for HW problems.
 #' @return The noise level (NL) in dB re. 1 microPa
 #' @export
+#'
+#' #' @examples
+#' specLvlGraph(c(28,33), ship=4,seaState = 1, wSpeed = 10, boolR = T)
 specLvlGraph <- function(freqBand,
                          shipT = -1,
                          seaState = -1,
@@ -169,30 +172,30 @@ specLvlGraph <- function(freqBand,
              wInput = as.numeric(wInput),
              tnInput = as.numeric(tnInput))
 
-    suppressWarnings(print(ggplot2::ggplot(dt, ggplot2::aes(freq)) +
-      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.1))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.2))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.3))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.4))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.5))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.6))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.7))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.8))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.9))+
-      ggplot2::scale_x_continuous(trans='log10', ,
-                         breaks = scales::trans_breaks("log10", function(x) 10^x),
-                         labels = scales::trans_format("log10", scales::math_format(format = log10)),
-                         n.breaks = 25)+
-      ggplot2::geom_line(ggplot2::aes(y=dt$NL_geophys))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$seaState.0))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$seaState.10))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$seaState.15))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$seaState.20))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$seaState.25))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$seaState.30))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$seaState.40))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$seaState.45))+
-      ggplot2::geom_line(ggplot2::aes(y=dt$NL_thermal))+
+    graphSL <- suppressWarnings(ggplot2::ggplot(dt, ggplot2::aes(freq)) +
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.1))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.2))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.3))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.4))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.5))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.6))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.7))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.8))+
+      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.9))+
+        ggplot2::scale_x_continuous(trans='log10',
+                                    breaks = scales::trans_breaks("log10", function(x) 10^x),
+                                    labels = scales::trans_format("log10", scales::math_format(format = log10)),
+                                    n.breaks = 25)+
+      ggplot2::geom_line(ggplot2::aes(y=NL_geophys))+
+      ggplot2::geom_line(ggplot2::aes(y=seaState.0))+
+      ggplot2::geom_line(ggplot2::aes(y=seaState.10))+
+      ggplot2::geom_line(ggplot2::aes(y=seaState.15))+
+      ggplot2::geom_line(ggplot2::aes(y=seaState.20))+
+      ggplot2::geom_line(ggplot2::aes(y=seaState.25))+
+      ggplot2::geom_line(ggplot2::aes(y=seaState.30))+
+      ggplot2::geom_line(ggplot2::aes(y=seaState.40))+
+      ggplot2::geom_line(ggplot2::aes(y=seaState.45))+
+      ggplot2::geom_line(ggplot2::aes(y=NL_thermal))+
       ggplot2::ylab(as.expression(bquote("Spectrum Level (dB ref 1 \u00B5" ~ P^2 ~ ')')))+
       ggplot2::xlab("Frequency (Hz)") +
       ggplot2::geom_point(ggplot2::aes(y=gpInput), color = "red")+
@@ -201,7 +204,7 @@ specLvlGraph <- function(freqBand,
       ggplot2::geom_point(ggplot2::aes(y=tnInput), color = "red")+
       ggplot2::geom_vline(xintercept = freqBand[1], color = "blue")+
       ggplot2::geom_vline(xintercept = freqBand[2], color = "blue")+
-      ggplot2::annotation_logticks(sides = "b")))
+      ggplot2::annotation_logticks(sides = "b"))
 
 
     allP <- suppressWarnings(c(max(stats::na.omit(dt$gpInput)),
@@ -216,9 +219,9 @@ specLvlGraph <- function(freqBand,
     metDB <- c(dbSum) + 10 * log10(freqBand[2] - freqBand[1])
 
     if(boolR){
-      print(paste("The noise level (NL) is:", as.character(metDB), "dB ref 1 \u00B5P"))
+      message(paste("The noise level (NL) is:", as.character(metDB), "dB ref 1 \u00B5P"))
     }
-    return(metDB)
+    return(list(metDB, graphSL))
   }
 
 

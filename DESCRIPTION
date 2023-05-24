@@ -6,7 +6,13 @@ Authors@R:
            comment = c(ORCID = "0000-0002-0921-7818")),
     person("Marissa", "Garcia", , "mg2377@cornell.edu", role = c("aut"),
            comment = c(ORCID = "0009-0009-6228-4794")))
-Description: This R package is a toolbox to help those in ecology who want to deepen their understanding or utilize Bioacoustics in their work. The package has a number of utilizations from calculating frequency from waveform, performing operations in dB, and determining acoustic range of recorders. The majority of this package is based on key concepts learned from the K. Lisa Yang Center for Conservation Bioacoustics at Cornell University and their associated course: Introduction to Bioacoustics course.
+Description: This R package is a toolbox to help those in ecology who want to 
+    deepen their understanding or utilize Bioacoustics in their work. T
+    he package has a number of utilizations from calculating frequency from waveform, 
+    performing operations in dB, and determining acoustic range of recorders. The 
+    majority of this package is based on key concepts learned from the K. Lisa Yang 
+    Center for Conservation Bioacoustics at Cornell University and their associated course: Introduction to Bioacoustics course.
+    More information can be foud within the walk through vignettes at <https://github.com/MattyD797/bioSNR/tree/main/vignettes>
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3

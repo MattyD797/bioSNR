@@ -287,8 +287,8 @@ Nemo suddenly turned into a blue whale (_Balaenoptera musculus intermedia_) and 
 interest, considering noise from moderate shipping, a sea state of 1, and a wind speed of 10 mph? 
 
 
-```{r ex1, fig.align = 'center'}
-specLvlGraph(c(28,33), ship=4,seaState = 1, wSpeed = 10, boolR = T)
+```{r ex1, fig.align = 'center', warning=FALSE}
+specLvlGraph(c(28,33), ship=4,seaState = 1, wSpeed = 10, boolR = T)[[2]]
 ```
 
 * The $NL$ is 82.9897 $dB\: re \: 1\mu Pa$. 
