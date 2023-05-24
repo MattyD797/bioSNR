@@ -27,6 +27,10 @@ The noise level (NL) in dB re. 1 microPa
 \description{
 This function calculates the ambient noise level (NL; dB re. 1 microPa) in a deep-water marine environement.
 }
+\examples{
+specLvlGraph(c(28,33), ship=4,seaState = 1, wSpeed = 10, boolR = TRUE)
+
+}
 \references{
 Wenz, G. M. (1962). Acoustic ambient noise in the ocean: Spectra and sources. The Journal of the Acoustical Society of America, 34(12), 1936-1956.
 

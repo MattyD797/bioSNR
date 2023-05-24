@@ -2,7 +2,7 @@
 title: "The Sound Stops with the Passive Sonar Equation"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Intermediate: Passive Sonar Equation}
+  %\VignetteIndexEntry{The Sound Stops with the Passive Sonar Equation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 author: Matthew Duggan
