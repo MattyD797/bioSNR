@@ -2,12 +2,30 @@
 % Please edit documentation in R/rmax.R
 \name{rmax}
 \alias{rmax}
-\title{This function solves the sonar equation for the maximum range, for cylindrical spreading and no absorption
-e.g seek the range at wich the TL =  SL - NL - DT;}
+\title{Maximum Detection Range}
 \usage{
-rmax(TL, boolR = T)
+rmax(sl, nl, dt, d, a = 0, xaxis = 25)
+}
+\arguments{
+\item{sl}{Source level of the signal of interest, as measured in dBs.}
+
+\item{nl}{Noise Level or background ambient noise in the recorder’s local environment.}
+
+\item{dt}{Detection Threshold or the additional dBs the signal of interest must achieve above ambient noise conditions in order to be detected by the receiver.}
+
+\item{d}{Depth}
+
+\item{a}{The absorption coefficeant given to you by the absorptionAir or absorptionWater formula.}
+
+\item{xaxis}{Exaggerated max distance. This gives the largest distance to evaluate in order to find the intercept of your detection threshold and propogation of the source level.}
+}
+\value{
+The maximum detection range in meters
 }
 \description{
-This function solves the sonar equation for the maximum range, for cylindrical spreading and no absorption
-e.g seek the range at wich the TL =  SL - NL - DT;
+This function finds the maximum detection range of a given call.
+}
+\examples{
+# SL= 195, NL = 82.9897, DT = 10, TR = 2500
+ rmax(sl=195,nl=82.9897,dt=10,d=2500*2, xaxis=10000000)
 }

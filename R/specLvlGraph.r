@@ -19,6 +19,10 @@
 #' @param boolR Boolean of whether you want the value printed out in a string. Should be true for HW problems.
 #' @return The noise level (NL) in dB re. 1 microPa
 #' @export
+#'
+#' @examples
+#' specLvlGraph(c(28,33), ship=4,seaState = 1, wSpeed = 10, boolR = TRUE)
+#'
 specLvlGraph <- function(freqBand,
                          shipT = -1,
                          seaState = -1,
@@ -42,7 +46,7 @@ specLvlGraph <- function(freqBand,
 
     #Geophysical contribution for Freq<10 Hz
     #N_geophys = 107 - 30log10(f)
-    intervalG <- freq[1:tail(which(freq<10)+1, 1)]
+    intervalG <- freq[1:utils::tail(which(freq<10)+1, 1)]
     NL_geophys <- 107 - 30 * log10(intervalG)
 
     NL_geophys2 <- cbind(intervalG, NL_geophys)
@@ -58,13 +62,13 @@ specLvlGraph <- function(freqBand,
 
     shipLines <- function(trafficIndex, freqI=freq, freqmax = 10000){
 
-      interval <- freqI[head(which(freqI > 5), 1):tail(which(freqI < 500), 1)]
+      interval <- freqI[utils::head(which(freqI > 5), 1):utils::tail(which(freqI < 500), 1)]
       NL_ship<- 76 - (20*(log10(interval/30))^2) + 5*(trafficIndex-4)
       return(NL_ship)
     }
 
     shipTraffic <- sapply(c(1:9), shipLines)
-    shipTraffic2 <- cbind(freq[head(which(freq > 5), 1):tail(which(freq < 500), 1)], shipTraffic)
+    shipTraffic2 <- cbind(freq[utils::head(which(freq > 5), 1):utils::tail(which(freq < 500), 1)], shipTraffic)
     colnames(shipTraffic2) <- c("freq",
                                 "shipTraffic.1",
                                 "shipTraffic.2",
@@ -82,10 +86,10 @@ specLvlGraph <- function(freqBand,
     windSpeed <- function(windSpeed, freqI=freq, freqmax = 10000){
       #between 80 - 1000 Hz
       # < 1000 Hz
-      interval1 <- head(which(freqI > 80)-1, 1):(tail(which(freqI < 1000)-1, 1))
+      interval1 <- utils::head(which(freqI > 80)-1, 1):(utils::tail(which(freqI < 1000)-1, 1))
       NL_wind <- 44 + sqrt(21*windSpeed) + 17 * (3 - log10(freqI[interval1])) * (log10(freqI[interval1])-2)
       # >= 1000 Hz
-      interval2 <- head(which(freqI > 1000)-1, 1):tail(which(freqI < 300000)-1, 1)
+      interval2 <- utils::head(which(freqI > 1000)-1, 1):utils::tail(which(freqI < 300000)-1, 1)
       NL_wind <- append(NL_wind, 95 + sqrt(21*windSpeed) - 17*log10(freqI[interval2]))
       return(NL_wind)
     }
@@ -95,13 +99,13 @@ specLvlGraph <- function(freqBand,
     }
 
     wind <- sapply(c(0, 10, 15, 20, 25, 30, 40, 45), windSpeed)
-    intervalW <- freq[head(which(freq > 80)-1, 1):tail(which(freq < 300000)-1, 1)]
+    intervalW <- freq[utils::head(which(freq > 80)-1, 1):utils::tail(which(freq < 300000)-1, 1)]
     wind2 <- cbind(intervalW, wind)
     colnames(wind2) <- c("freq", "seaState.0", "seaState.10", "seaState.15", "seaState.20", "seaState.25", "seaState.30", "seaState.40", "seaState.45")
 
     ## Thermal noise (f > 50 kHz)
     # NLthermal = -75 + 20log10(f)
-    intervalT <- freq[head(which(freq > 50000), 1):freqMax]
+    intervalT <- freq[utils::head(which(freq > 50000), 1):freqMax]
     NL_thermal <- -75 + 20 * log10(intervalT)
     NL_thermal2 <- cbind(intervalT, NL_thermal)
     colnames(NL_thermal2)[1] <- "freq"
@@ -169,30 +173,30 @@ specLvlGraph <- function(freqBand,
              wInput = as.numeric(wInput),
              tnInput = as.numeric(tnInput))
 
-    suppressWarnings(print(ggplot2::ggplot(dt, ggplot2::aes(freq)) +
-      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.1))+
-      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.2))+
-      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.3))+
-      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.4))+
-      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.5))+
-      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.6))+
-      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.7))+
-      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.8))+
-      ggplot2::geom_line(ggplot2::aes(y=shipTraffic.9))+
-      ggplot2::scale_x_continuous(trans='log10', ,
-                         breaks = scales::trans_breaks("log10", function(x) 10^x),
-                         labels = scales::trans_format("log10", scales::math_format(10^.x)),
-                         n.breaks = 25)+
-      ggplot2::geom_line(ggplot2::aes(y=NL_geophys))+
-      ggplot2::geom_line(ggplot2::aes(y=seaState.0))+
-      ggplot2::geom_line(ggplot2::aes(y=seaState.10))+
-      ggplot2::geom_line(ggplot2::aes(y=seaState.15))+
-      ggplot2::geom_line(ggplot2::aes(y=seaState.20))+
-      ggplot2::geom_line(ggplot2::aes(y=seaState.25))+
-      ggplot2::geom_line(ggplot2::aes(y=seaState.30))+
-      ggplot2::geom_line(ggplot2::aes(y=seaState.40))+
-      ggplot2::geom_line(ggplot2::aes(y=seaState.45))+
-      ggplot2::geom_line(ggplot2::aes(y=NL_thermal))+
+    graphSL <- suppressWarnings(ggplot2::ggplot(dt, ggplot2::aes(freq)) +
+      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.1))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.2))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.3))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.4))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.5))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.6))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.7))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.8))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$shipTraffic.9))+
+        ggplot2::scale_x_continuous(trans='log10',
+                                    breaks = scales::trans_breaks("log10", function(x) 10^x),
+                                    labels = scales::trans_format("log10", scales::math_format(format = log10)),
+                                    n.breaks = 25)+
+      ggplot2::geom_line(ggplot2::aes(y=dt$NL_geophys))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$seaState.0))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$seaState.10))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$seaState.15))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$seaState.20))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$seaState.25))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$seaState.30))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$seaState.40))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$seaState.45))+
+      ggplot2::geom_line(ggplot2::aes(y=dt$NL_thermal))+
       ggplot2::ylab(as.expression(bquote("Spectrum Level (dB ref 1 \u00B5" ~ P^2 ~ ')')))+
       ggplot2::xlab("Frequency (Hz)") +
       ggplot2::geom_point(ggplot2::aes(y=gpInput), color = "red")+
@@ -201,13 +205,13 @@ specLvlGraph <- function(freqBand,
       ggplot2::geom_point(ggplot2::aes(y=tnInput), color = "red")+
       ggplot2::geom_vline(xintercept = freqBand[1], color = "blue")+
       ggplot2::geom_vline(xintercept = freqBand[2], color = "blue")+
-      ggplot2::annotation_logticks(sides = "b")))
+      ggplot2::annotation_logticks(sides = "b"))
 
 
-    allP <- suppressWarnings(c(max(na.omit(dt$gpInput)),
-              max(na.omit(dt$stInput)),
-              max(na.omit(dt$wInput)),
-              max(na.omit(dt$tnInput))))
+    allP <- suppressWarnings(c(max(stats::na.omit(dt$gpInput)),
+              max(stats::na.omit(dt$stInput)),
+              max(stats::na.omit(dt$wInput)),
+              max(stats::na.omit(dt$tnInput))))
 
     calcP <- 10^(allP/20)*2*10^-5
     sumP <- sum(calcP)
@@ -216,9 +220,9 @@ specLvlGraph <- function(freqBand,
     metDB <- c(dbSum) + 10 * log10(freqBand[2] - freqBand[1])
 
     if(boolR){
-      print(paste("The noise level (NL) is:", as.character(metDB), "dB ref 1 \u00B5P"))
+      message(paste("The noise level (NL) is:", as.character(metDB), "dB ref 1 \u00B5P"))
     }
-    return(metDB)
+    return(list(metDB, graphSL))
   }
 
 

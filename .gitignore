@@ -3,5 +3,10 @@
 .RData
 .Ruserdata
 inst/doc
+/vignettes/*.log
+/vignettes/*.out
+/vignettes/*.aux
+/vignettes/*.html
+/vignettes/*.R
 *.pdf
 .DS_Store

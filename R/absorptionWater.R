@@ -14,7 +14,7 @@
 #' @examples
 #' #How much are blue whale calls (30 kHz) absorbed in a tropical region
 #' #(30 deg C) assuming a salinity of 35 ppt, pH of 8, and a depth of 5 km?
-#' absorptionWater(30, 8, 35, 5)
+#' absorptionWater(30, 8, 30, 35, 5)
 
 absorptionWater <- function(f, pH=8, t=0, s=35, z){
 

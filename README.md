@@ -18,7 +18,7 @@ have not been incorporated into R. Thus, the idea to take this as an opportunity
 
 A majority of these functions are changing with the developing field of bioacoustics and as of 2023, to our knowledge, this is the most up-to-date formats. A majority of these
 functions that are a simulation tool to get a better idea on the number of recorders one will need to set up a bioacoustic experiment, especially in 
-marine environments. As this package develops, we hope that the simulation tools developed for marine environments will grow into more terrestrial applications. In addition
+marine environments. As this package develops, we hope that the simulation tools developed for marine environments will grow into more terrestrial applications and as a whole be more well developed in this package. In addition
 to simulation development, we aspire that this package will inspire others to take bioacoustics as an environmental parameter in interdisciplinary work.
 
 ## Installation
@@ -34,13 +34,12 @@ library(bioSNR)
 ## Authors
 
 - [Matthew Duggan](https://github.com/MattyD797)
-- [Léa Bouffaut]()
 - [Marissa Garcia](https://github.com/mlynngarcia)
 
 ## Acknowledgements
 
 We would like to thank the K. Lisa Yang Center for Conservation Bioacoustics at Cornell University for providing supporting material. 
-This material is based upon work supported by the National Science Foundation Graduate Research Fellowship under Grant No. . Any opinion, findings, and conclusions or recommendations expressed in this material are those of the authors(s) and do not necessarily reflect the views of the National Science Foundation or the K. Lisa Yang Center for Conservation Bioacoustics.
+This material is based upon work supported by the National Science Foundation Graduate Research Fellowship under Grant No. DGE – 2139899. Any opinion, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation or the K. Lisa Yang Center for Conservation Bioacoustics.
 
 
 
